@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SausmagicBot1ApplicationTests {
+public class DemoRestApiSecurityApplicationTests {
 
 	@Test
 	public void contextLoads() {
