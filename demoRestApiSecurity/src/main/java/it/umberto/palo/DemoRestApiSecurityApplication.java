@@ -31,63 +31,63 @@ public class DemoRestApiSecurityApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoRestApiSecurityApplication.class, args);
 	}
-	@Bean
-    CommandLineRunner init(final AccountRepository accountRepository) {
-      
-      return new CommandLineRunner() {
-
-        @Override
-        public void run(String... arg0) throws Exception {
-          accountRepository.save(new Account("rbaxter", "password"));
-          
-        }
-        
-      };
-
-    }
+//	@Bean
+//    CommandLineRunner init(final AccountRepository accountRepository) {
+//      
+//      return new CommandLineRunner() {
+//
+//        @Override
+//        public void run(String... arg0) throws Exception {
+//          accountRepository.save(new Account("rbaxter", "password"));
+//          
+//        }
+//        
+//      };
+//
+//    }
     
 }
 
-@Configuration
-class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
+//@Configuration
+//class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
+//
+//  @Autowired
+//  AccountRepository accountRepository;
+//
+//  @Override
+//  public void init(AuthenticationManagerBuilder auth) throws Exception {
+//    auth.userDetailsService(userDetailsService());
+//  }
+//
+//  @Bean
+//  UserDetailsService userDetailsService() {
+//    return new UserDetailsService() {
+//
+//      @Override
+//      public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        Account account = accountRepository.findByUsername(username);
+//        if(account != null) {
+//        return new User(account.getUsername(), account.getPassword(), true, true, true, true,
+//                AuthorityUtils.createAuthorityList("USER"));
+//        } else {
+//          throw new UsernameNotFoundException("could not find the user '"
+//                  + username + "'");
+//        }
+//      }
+//      
+//    };
+//  }
+//}
 
-  @Autowired
-  AccountRepository accountRepository;
-
-  @Override
-  public void init(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userDetailsService());
-  }
-
-  @Bean
-  UserDetailsService userDetailsService() {
-    return new UserDetailsService() {
-
-      @Override
-      public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account account = accountRepository.findByUsername(username);
-        if(account != null) {
-        return new User(account.getUsername(), account.getPassword(), true, true, true, true,
-                AuthorityUtils.createAuthorityList("USER"));
-        } else {
-          throw new UsernameNotFoundException("could not find the user '"
-                  + username + "'");
-        }
-      }
-      
-    };
-  }
-}
-
-@EnableWebSecurity
-@Configuration
-class WebSecurityConfig extends WebSecurityConfigurerAdapter {
- 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    http.authorizeRequests().anyRequest().fullyAuthenticated().and().
-    httpBasic().and().
-    csrf().disable();
-  }
-  
-}
+//@EnableWebSecurity
+//@Configuration
+//class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+// 
+//  @Override
+//  protected void configure(HttpSecurity http) throws Exception {
+//    http.authorizeRequests().anyRequest().fullyAuthenticated().and().
+//    httpBasic().and().
+//    csrf().disable();
+//  }
+//  
+//}
