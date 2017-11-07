@@ -20,3 +20,12 @@ security:
   user:
     name: sausmagic
     password: sausmagic
+
+#modifico il livello dei log di Spring boot di root impostati a default a INFO (se mettete a DEBUG ve ne pentirete....)   
+#Usate logback o framework simili
+logging:
+  level:
+    ROOT: INFO
+    org:
+      springframework:
+        security: DEBUG

@@ -3,6 +3,7 @@ package it.umberto.palo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +26,15 @@ public class AccountRestController {
 	    return accountRepo.findAll();
 	  }
 	  
+	/**
+	 * Umberto: questo metodo può essere solo utilizzato da utente con ruolo specificato
+	 * @param account
+	 * @return
+	 */
 	  @RequestMapping(name="add", method=RequestMethod.POST, value="/add")
-	  public Account create(@RequestBody Account contact) {
-	    return accountRepo.save(contact);
+	  @Secured({"ROLE_MASTER_ADMIN"})
+	  public Account create(@RequestBody Account account) {
+	    return accountRepo.save(account);
 	  }
 	  
 	  @RequestMapping(name="delete",method=RequestMethod.DELETE, value="/delete/{id}")
